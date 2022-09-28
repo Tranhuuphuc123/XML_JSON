@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plannets>
+    <plannet>
+        <name>Mercury</name>
+        <mass units="(earth=1)">/0553</mass>
+        <day units="dáy">58.65</day>
+        <radius units="Miles">1516</radius>
+        <density units="(Earth=1)">.983</density>
+        <distance units="Million Miles">43.4</distance>
+    </plannet>
+    <plannet>
+        <name>VENUS</name>
+        <mass units="(Earth=1)">.815</mass>
+        <day units="Days">116.75</day>
+        <radius units="Miles">3716</radius>
+        <density units="(Earth=1)">.943</density>
+        <distance units="Million Miles">66.8</distance>
+    </plannet>
+    <plannet>
+        <name>Earth</name>
+        <mass units="(Earth=1)">1</mass>
+        <day units="Dáys">1</day>
+        <radius units="Miles">2107</radius>
+        <desity units="(Earth=1)">1</desity>
+        <distance units="Million Miles">128.4</distance>
+    </plannet>
+</plannets>

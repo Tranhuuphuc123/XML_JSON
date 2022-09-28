@@ -1,0 +1,19 @@
+<!--Phần XML Declartion(phần mô tả XML)-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--Phần DTD (Document Type Declartion) phần mô tả cấu trúc hỗ trợ, tự định nghĩa bên trong Root XML-->
+<!DOCTYPE  problems [
+    <!ENTITY call "Calculating the sum: ">
+    <!ENTITY ex "Example">
+]>
+<!--Phần Root Element (nội dung chính document của XML)-->
+<Problems>
+    <problem>
+        &call; s=1+2+3+...+n.
+          <Example>
+             &ex; n = 10 => S=55
+          </Example>
+    </problem>
+</Problems>
