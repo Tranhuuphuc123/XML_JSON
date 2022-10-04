@@ -1,0 +1,330 @@
+**************************** TỔNG QUAN VỀ XML**************************
+
+
+>>>>> khái niệm:
+  - XML: là ngôn ngữ giao tiếp giữa các ngôn ngữ lập trình và có chức năng chính là lưu trữ dữ liệu, Mô tả dữ
+  liệu khác với html có mục đích là hiển thị dữ liệu
+  - XML (Extencible Markup Language)
+  
+      >> Cấu trúc:
+      - XML: có 2 tp cấu thành là:
+        + Document XML Prolog: nội dung mô tả đến phần Document của XMl
+           ++ XML Declartion(mô tả XML)
+               <?xml version="1.0" encoding="UTF-8" ?>
+           ++ DTD: Phần mô tả cấu trúc dự liệu tự định nghĩa trong XML(xem kỹ phần bên bài02_DTD)
+              --> tên viết tắt Document Type Definition
+              --> toàn bộ phần DTD sẽ nằm trong khai báo <!DOCTYPE>
+
+        + Root Element: nơi chứa dữ liệu nội dung Document của XML(hay con gọi là phần tử gốc)
+          
+
+          ===> ví dụ minh họa
+
+            // nội dung mô tả của Document, Dòng này được gọi là XML prolog (ĐÚNG HƠN LÀ xml Declartion)
+
+            <?xml version="1.0" encoding="UTF-8"?>     
+
+            // từ note thì toàn bộp nd bên trong gọi là root Element
+              <note>
+                <to>Tove</to>
+                <from>Jani</from>
+                <heading>Reminder</heading>
+                <body>Don't forget me this weekend!</body>
+              </note>
+
+
+     >> Quy tắc đặt tên XML
+        -Các phần tử XML phải tuân theo các quy tắc đặt tên sau:
+
+         + Tên phần tử có phân biệt chữ hoa chữ thường(chữ thường thì phải thường hết, hoa thì hoa hết)
+         + Tên phần tử phải bắt đầu bằng một chữ cái hoặc dấu gạch dưới
+         + Tên phần tử không được bắt đầu bằng các chữ cái xml (hoặc XML, hoặc Xml, v.v.)
+         + Tên phần tử có thể chứa các chữ cái, chữ số, dấu gạch ngang, dấu gạch dưới và dấu chấm câu
+         + Tên phần tử không được chứa khoảng trắng
+         + Bất kỳ tên nào cũng có thể được sử dụng, không có từ nào được đặt trước (ngoại trừ xml).
+
+  
+      >> khai báo thẻ đóng mở trong các phần tử XML
+        - ví dụ ta có thể ghi theo 2 cách sau đều đúng:
+           <element></element>
+            or
+           <element />
+
+
+
+
+
+>>>>>>>> Entities: thực thể trong XML
+ -- Các thực thể trong XML:
+     
+      Pre Enity                           ký hiệu
+
+       &lt;                                <
+       &gt;                                >
+       &amp                                &
+       &apos                               '
+       &quos                               "
+
+      
+
+    ** Special Enity:
+       ! : dành cho tự định nghĩa
+           + vd:
+              <! ENTITY name "mô tả">
+
+              ===> trong phần Root Element muốn dùng thì @name; là sẽ lôi đc "nội dung trong ngoặc"
+
+
+
+              ++ ví dụ:
+                      <?xml version="1.0" encoding="UTF-8"?>
+                      <!DOCTYPE  problems [
+                        <!ENTITY call "Calculating the sum: ">
+                    ]>
+                    <!--Phần Root Element (nội dung chính document của XML)-->
+                    <Problems>
+                        <problem>
+                            &call; s=1+2+3+...+n.    
+                        </problem>
+                    </Problems>
+
+
+                +++ ví dụ:
+
+                   <person gender="female">
+                    <firstname>Anna</firstname>
+                    <lastname>Smith</lastname>
+                  </person>
+                  ===> "female" là thuộc tính 
+          --------------------------------------------------------
+                  <person>
+                    <gender>female</gender>
+                    <firstname>Anna</firstname>
+                    <lastname>Smith</lastname>
+                  </person>
+                  ===> lúc này female hông là thuộc tính mà là yếu tố của phần tử <gender> trong root element
+
+
+>>>>> ENity Categories(Loại Enity)
+ - General Enity: cú pháp %
+    <!element % a 'abc gì đó'/>
+
+    --> trong root muốn sài thì dùng %a
+
+ - Parameter Enity: 
+    <!element a "abc gì đó" />
+
+    --> trong root muốn sài thì dùng @a;
+
+
+
+>>>> Thuộc tính (Attributes):
+
+  - Các giá trị thuộc tính phải luôn được trích dẫn. Có thể sử dụng dấu ngoặc kép đơn hoặc dấu ngoặc kép.
+
+  - Đối với giới tính của một người, phần tử <person> có thể được viết như thế này:
+
+          <person gender="female">
+
+    hoặc như thế này:
+
+          <person gender='female'>
+
+    hoặc lồng các dấu:
+         
+          <gangster name='George "Shotgun" Ziegler'>
+
+
+   
+
+
+
+>>>>>> Kiểu khai báo file xml với DOCTYPE
+  - Internal XML(khai báo trực tiếp trong xml)
+  - external XML(Khai báo bên ngoài rồi gáng đg link vào xml thông qua SYSTEM);
+     --> thông qua câu lệnh 
+       <!DOCTYPE program SYSTEM "dg link chứa file.dtd">
+
+
+==================================================================================================================================================
+*********************************PHẦN NAMESPACE****************************************
+
+>>>>>> NAMESPACE: KHÔNG GIAN TÊN TRONG XML
+ -> NAMESPACE là Không gian tên XML cung cấp một phương pháp để tránh xung đột tên phần tử.
+
+      + ví dụ:
+
+              <table>
+                <tr>
+                  <td>Apples</td>
+                  <td>Bananas</td>
+                </tr>
+              </table>
+              ---------------------------------
+              <table>
+                <name>African Coffee Table</name>
+                <width>80</width>
+                <length>120</length>
+              </table>
+
+ ---> ta thấy rằng giữa 2 root element trên thì rất dễ xung đột phần tử <table>
+ ==>ta giải quyết bằng cách đặt tên NAMESPACE:
+
+  >>Giải quyết xung đột tên bằng tiền tố (Prefixes element names: tiếp đầu ngữ)==>bằng cách đặt tên
+
+              <h:table>
+                <h:tr>
+                  <h:td>Apples</h:td>
+                  <h:td>Bananas</h:td>
+                </h:tr>
+              </h:table>
+
+              <f:table>
+                <f:name>African Coffee Table</f:name>
+                <f:width>80</f:width>
+                <f:length>120</f:length>
+              </f:table>
+              ------------------>dùng cách đặt tên tiền tố sẽ phân biệt đc phần tử <table> là h và f.
+              Trong ví dụ trên, sẽ không có xung đột vì hai phần tử <table> có tên khác nhau là h và f.
+
+            
+
+  >>Không gian tên XML - Thuộc tính xmlns:
+    - Khi sử dụng tiền tố trong XML, một không gian tên cho tiền tố phải được xác định. Không gian tên có thể 
+    được xác định bởi thuộc tính xmlns trong thẻ bắt đầu của một phần tử. Khai báo không gian tên có cú pháp 
+    sau. xmlns: prefix = " URI ".
+
+            ++ ví dụ:
+                
+                  <root>
+                      <h:table xmlns:h="http://www.w3.org/TR/html4/">
+                        <h:tr>
+                          <h:td>Apples</h:td>
+                          <h:td>Bananas</h:td>
+                        </h:tr>
+                      </h:table>
+                  </root>
+
+    - Không gian tên cũng có thể được khai báo trong phần tử gốc XML:
+
+                  <root xmlns:h="http://www.w3.org/TR/html4/">
+
+                      <h:table>
+                        <h:tr>
+                          <h:td>Apples</h:td>
+                          <h:td>Bananas</h:td>
+                        </h:tr>
+                      </h:table>
+
+                  </root>
+ 
+
+      - nếu phần tử có thuộc tính Attributes muốn khai báo cho NAMESPACE thì add tên NAMESPACE:tên Attributes là đc
+      
+            
+
+    >> Một số NAMESPACE sẵn có trong XML:
+      
+                <mrow>
+                    <Mi>x</Mi>    // toán hạng bên trái
+                    <Mo>+</Mo>    // toán tử  + - * /
+                    <Mn>y</Mn>    // toán hạng bên phải
+                </mrow>
+
+       ===> nếu không có Mi, Mn, Mo thì khai báo x + y sẽ chỉ xem là một document bình thường không phải là một
+       toán tử.
+
+  ===> Ngoài ra nó có thể tự định nghĩa riêng mà không cần có NAMESPACE tiền tố prefix NAMESPACE.
+             vd:
+
+                 <root>
+                      <table xmlns:h="http://www.w3.org/TR/html4/">
+                        <h:tr>
+                          <h:td>Apples</h:td>
+                          <h:td>Bananas</h:td>
+                        </h:tr>
+                      </h:table>
+                  </root>
+
+          --> tuy nhiên những cách khai báo trên lại quá rườm rà code nhiều. Giải quyết rọn hơn thông qua Default NAMESPACE
+
+    >> Default NAMESPACE: tên mặc định
+      
+                <table xmlns="http://www.w3.org/TR/html4/">
+                  <tr>
+                    <td>Apples</td>
+                    <td>Bananas</td>
+                  </tr>
+                </table>
+
+          ===> cách này gọi là Default NAMESPACE, lúc này không cần phải NAMESPACE:tên phần tử gì cả,--> chỉ cần
+          hiểu là tất cả các phần tử trong <table> đều thuộc NAMESPACE có URI ="http://www.w3.org/TR/html4/"
+
+
+    >> Overite Default namespace:
+
+               <table xmlns="http://www.w3.org/TR/html4/">
+                  <tr>
+                    <td>Apples</td>
+                    <td>Bananas</td>
+                    <span xmlns="abc.com">
+                       <a>the con nha</a>
+                    </span>
+                  </tr>
+                </table>
+
+            ====> lúc này thì ta thấy phần tử <span> nó sẽ không còn chịu tác dụng của NAMESPACE có URI="http://www.w3.org/TR/html4/", mà là
+            xmlns="abc.com", ta nói nó đã ghi đè lên để pt <span> chỉ chịu thuộc tính URI trc để chấp nhận NAMESPACE xmlns mới, đồng thời
+            các phẩn tử con cụ thể <a> trong pt <span> lúc này đều chịu chung NAMESPACE xmlns ="abc.com"
+            =====> ta gọi cách thức đó là Overite Default namespace
+       
+      
+=============================================================================================================================================
+
+>>>>> KIỂU DỮ LIỆU TRONG XML
+  - CDATA: dữ liệu là ký tự bình thường
+  - PCDATA: tính hợp lệ của chuỗi ký tự
+  - (en1|en2|..): 
+  ------------>đây gọi là kiểu enumerated list mội chuỗi ds ký tự quy định trc, vd đây là kiểu dữ liệu gồm
+  (viet/thai/enlish) thì khi người nhập gặp kiểu khai báo này chỉ có thể chon 1 trong 3 ngôn ngữ trên mà thui.
+
+  - NMTOKEN
+  - NMTOKENS
+  ===> 2 NÀY LÀ  tên của file xml cần truy xuất vào file xml đó thì mới lấy đc giá trị
+  - NOTATION: tên của một thông báo cảnh báo trc nào đóng
+
+
+
+  - 
+>>>>> Intruction:
+  -k/n: là những chỉ dẫn xử lý, bao gồm những thông tin mô tả cho dữ liệu cụ thể
+  - cấu trúc: <? Pitarrget <Intruction>?>
+   + trong đó:
+        ++ Pitarrget: là name của hướng dẫn (name thi theo cấu trúc do mình đặt tên)
+        ++ Intruction là nội  dung cần thực hiện
+
+    
+                +++ ví dụ:
+                    <name>
+                        <Firrst>John</Firrst>
+                        <!--nỳ là note của xml-->
+                        <Last>Browwn</Last>
+                        <? Fresprocsser select * from table?>         // đây là Intruction
+
+
+                        // trong đó Presprocsser là name còn select * from table là Intruction
+                    </name>
+
+
+                      
+
+==========================================================================================================================================
+*****KHÁI NIỆM WELL-FORMED: ĐÚNG CÚ PHÁP
+ - phân  biệt chữ hoa thường
+ - có thẻ mở và đóng
+ - có xml prolog và root element
+ - có Attributes
+ - có DTD định nghĩa rõ ràng
+ 
+
+***** kHÁI NIỆM VALID: HỢP LỆ THEO KIỂM SOÁT NÀO ĐÓ (DTD or XML skimer)

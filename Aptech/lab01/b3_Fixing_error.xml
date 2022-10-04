@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CATALOGS>
+    <CATALOG>
+        <CD NOTE="Top 5">
+            <TITLE>Still got the blues</TITLE>
+            <ARTIST>Gary Moore</ARTIST>
+            <COUNTRY>UK</COUNTRY>
+            <COMPANY>Virgin records</COMPANY>
+            <PRICE>10.20</PRICE>
+            <YEAR>1990</YEAR>
+        </CD>
+        <CD note="Famous" NOTE="Top 10">
+            <TITLE>Hide your heart</TITLE>
+            <ARTIST>Bonnie Tyler ARTIST</ARTIST>
+            <COUNTRY> UK</COUNTRY>
+            <company>CBS Records</company>
+            <PRICE>9.90</PRICE>
+            <YEAR>1988</YEAR>
+        </CD>
+    </CATALOG>
+    <CATALOG>
+        <CD NOTE="Top 50">
+            <TITLE>Greatest Hits</TITLE>
+            <ARTIST><![CDATA[Dolly Parton and Lee Partrick]]></ARTIST>
+            <COUNTRY>USA</COUNTRY>
+            <COMPANY>RCA</COMPANY>
+            <PRICE>9.90</PRICE>
+            <year>1982</year>
+        </CD>
+        <CD note="Famous" NOTE="Top 10">
+            <TITLE>Empire Burlesque</TITLE>
+            <ARTIST><![CDATA[Bob Dylan and ]]> Lee Partrick]]!></ARTIST>
+            <Country>USA</Country>
+            <Company>Columbia</Company>
+            <PRICE>10.90</PRICE>
+            <year>1985</year>
+        </CD>
+    </CATALOG>
+</CATALOGS>

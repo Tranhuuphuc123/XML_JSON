@@ -1,0 +1,98 @@
+
+***********************TIỀM HIỂU VỀ DTD TRONG XML*************************************
+-Khái niệm: DTD (Document Type Definition): Phần mô tả cấu trúc dữ liệu tự định nghĩa trong XML 
+prolog
+
+>>>>> Cấu trúc: Phần DTD nó sẽ nằm trong khối pt gốc <!DOCTYPE>
+   <!DOCTYPE element[DTD-indentifier][
+                Declaration1
+                Declaration1
+                ....
+   ]>
+
+    + trong đó: 
+      ++ element[DTD-indentifier]: phần quy định phần tử gốc DTD trong XML(tên, nội dung do mình quy định trc)
+      ++ Declartion: định nghĩa bên trong DTD (có 3 Loại định nghĩa)
+           
+
+   >> Declartion: định nghĩa bên trong DTD
+    >Đ/N Element: Định nghĩa phần tử ELEMENT
+       
+        <!ELEMENT element_name [element-content]>
+
+    > Định nghĩa về Attributes(thuộc tính) sau !ATTLIST
+
+      <!ATTLIST element_name Attributes_name Attributes_type default_values
+
+    > Định nghĩa !ENITY  khai báo thực thể (giống một biến khi cần sẽ gọi)
+
+      <!ENTITY enity_name ="enity_value"
+
+      ===> khi cần gọi ENITY_name thì ta sẽ lôi ra trong root bằng cách: @ENITY_name hoặc % ENITY_name
+      (coi lại Attributes Categories: General enity với Parameter enity)
+
+
+
+      ++ví dụ minh họa:
+
+             // khai báo pt gốc DTD với DOCTYPE
+              <!DOCTYPE Mobile[
+
+              // phần khai báo file gốc DTD có tên Mobile chứa các phần tử bắt buộc có bên trong [ ]
+                <!ELEMENT Mobile [name, company, price, Model]
+                // định nghĩa element
+                  <!ELEMENT name [#PCDATA] >
+                  <!ELEMENT company [#PCDATA] >
+                  <!ELEMENT price [#PCDATA] >
+                  <!ELEMENT Model [#PCDATA] >
+
+                //định nghĩa thuộc tính(cụ thể pt Model với kiểu dl CDATA và giá trị mặc định "Camera"
+                nếu không nhập gì thì nó sẽ thay bằng Camera)
+                 <!ATTLIST Model Type CDATA "Camera" >
+
+                // định nghĩa kiểu thực thể Enity
+                <!ENITY H "HEADPHONE" >
+
+              ]>   
+              
+
+
+>>>> Kiểu khai báo trong DTD:
+  >> Internal:(Nội bộ)
+      --> ví dụ trên chính là khai báo dtd kiểu internal
+  >> External(file lk ngoại)
+     --> khai báo external là tạo 2 file file.dtd và file.xml--> sau đó dẫn dg lik file.dtd vào file.xml
+    thông qua câu lệnh system:
+     
+      ++ ví dụ:
+        **file.dtd
+
+                  <!ELEMENT Mobile [name, company, price, Model]
+                  <!ELEMENT name [#PCDATA] >
+                  <!ELEMENT company [#PCDATA] >
+                  <!ELEMENT price [#PCDATA] >
+                  <!ELEMENT Model [#PCDATA] >
+
+        **file.xml() kèm đg dẫn system dg link dtd
+          
+                  <!DOCTYPE Mobile SYSTEM "file.dtd">
+                  <Mobile>
+                      <note>vidu minh hoa</note>
+                      <from>Cantho</from>
+                  </Mobile>
+          
+                    
+              
+>>>>>>  ***** SPECIAL ATRIBUTES VALUES: ***
+    - DC gọi là thuộc tính đặc biệt theo sau DTD(!ATTLIST)
+      >> Value default: giá trị mặc định
+      >> #REQUIRED:  bắt buộc nhập
+      >> #IMPLIED: có thể để trống (CÓ THỂ XEM LÀ NOT NULL)
+      >> #FIXED: Giá trị không thay đổi đc, giá trị cố định
+      >> EN1|EN2...: giá trị danh sách có sự lựa chon theo liệt kê
+
+         ví dụ:
+             <!ATTLIST Model Type (check|cash) "Cash">
+            ---> nghĩa là mô tả thuộc tính với kiểu dự liệu Enumerated list chỉ là check hoặc cash,
+            nếu bỏ qua chỉ tính default Value "cash"
+          

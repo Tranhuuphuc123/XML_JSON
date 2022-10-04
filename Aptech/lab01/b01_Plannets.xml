@@ -19,7 +19,7 @@
     <plannet>
         <name>Earth</name>
         <mass units="(Earth=1)">1</mass>
-        <day units="Dáys">1</day>
+        <day units="Days">1</day>
         <radius units="Miles">2107</radius>
         <desity units="(Earth=1)">1</desity>
         <distance units="Million Miles">128.4</distance>
